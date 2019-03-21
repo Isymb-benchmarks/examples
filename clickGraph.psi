@@ -1,0 +1,27 @@
+// skipped: too slow at the moment
+
+def main(){
+
+    
+    clicks_0 := readCSV("./data/clickGraph/clicks0.csv");
+    clicks_1 := readCSV("./data/clickGraph/clicks1.csv");
+ 
+    similarityAll := uniform(0,1);
+    for i in [0..clicks_0.length){
+        sim := flip(similarityAll);
+        beta1:=0;beta2:=0;
+        if sim {
+            beta1 = uniform(0,1);
+            beta2 = beta1;
+        }else{
+            beta1 = uniform(0,1);
+            beta2 = uniform(0,1);
+        }
+        c1 := flip(beta1);
+        c2 := flip(beta2);
+        observe(c1==clicks_0[i]);
+        observe(c2==clicks_1[i]);
+    }
+    // assert(similarityAll>5/12);
+    return similarityAll;
+}
