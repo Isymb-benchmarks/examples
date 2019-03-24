@@ -2,11 +2,14 @@
 
 def main(){
     observedResults := readCSV("./data/CoinBias/tosses.csv");
-    bias := beta(2, 5);
-
+    bias := Beta(2, 5);
+    n := observedResults.length;
+    tossresults := array(n);
+    for i in [0..observedResults.length){
+      tossresults[i] = flip(bias);
+    }
     for i in [0..observedResults.length) { 
-      trial := flip(bias);
-      observe(trial == observedResults[i]);
+      observe(tossresults[i] == observedResults[i]);
     }
     return bias;
    
